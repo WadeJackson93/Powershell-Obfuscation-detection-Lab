@@ -95,9 +95,9 @@ This demonstrates how Sentinel can be used to detect potentially malicious Power
 
 ### Microsoft Sentinel Detection Query
 
-![Detection Query](Powershell%20Obfuscation.png)
+![Detection Query](./Powershell%20Obfuscation.png)
 ### Detection Results in Microsoft Sentinel
-![Detection Results](PowerShell%20Screenshot.png)
+![Detection Results](./PowerShell%20Screenshot.png)
 ---
 
 ## Key Takeaways
