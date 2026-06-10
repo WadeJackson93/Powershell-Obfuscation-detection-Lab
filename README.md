@@ -1,70 +1,64 @@
 # PowerShell Obfuscation Detection Lab
 
 ## Objective
-This lab demonstrates how to detect suspicious PowerShell obfuscation and encoded command execution using Microsoft Sentinel, Sysmon, Windows Event Logs, and KQL queries. The goal was to simulate attacker behavior, generate telemetry, and investigate the activity through log analysis and threat detection techniques.
+
+This lab demonstrates how to detect suspicious and potentially malicious PowerShell activity using Microsoft Sentinel, Sysmon, Windows Event Logs, and KQL (Kusto Query Language).  
+
+The goal of this project was to simulate encoded PowerShell execution, generate telemetry, and create a detection query capable of identifying common indicators of PowerShell obfuscation and abuse.
+
+---
 
 ## Tools Used
+
 - Microsoft Sentinel
+- Microsoft Azure
 - Sysmon
 - Windows Event Logs
 - KQL (Kusto Query Language)
+- PowerShell
+
+---
+
+## Lab Environment
+
+- Windows Virtual Machine
+- Microsoft Sentinel Workspace
+- Sysmon installed for enhanced process creation logging
+- Log ingestion configured into Sentinel
+
+---
 
 ## Attack Simulation
-Simulated suspicious PowerShell activity using encoded commands to generate telemetry for detection.
 
-### Simulated Command
+A simulated PowerShell command utilizing encoded execution was executed within the lab environment to generate telemetry associated with suspicious PowerShell behavior.
 
-```powershell
-powershell.exe -EncodedCommand SQBFAFgA
-```
+The activity included:
+- Encoded PowerShell execution
+- Obfuscated command-line arguments
+- Suspicious PowerShell execution patterns commonly observed during adversary activity
 
-### Purpose
+Example techniques detected:
+- `-enc`
+- `-EncodedCommand`
+- `Invoke-Expression`
+- `IEX`
+- `FromBase64String`
 
-This simulation was used to imitate potentially malicious PowerShell behavior commonly observed during:
-- Malware execution
-- Obfuscated command execution
-- Defense evasion techniques
-- Post-exploitation activity
+---
 
-The command generated Windows Security Event ID 4688 process creation logs, which were successfully ingested into Microsoft Sentinel for investigation and detection.
+## Detection Logic
 
-### Logging Configuration
-
-To capture this activity:
-- Process Creation auditing was enabled
-- Command line logging was enabled through Group Policy
-- Logs were forwarded into Microsoft Sentinel
-
-### Detection Outcome
-
-The encoded PowerShell execution was successfully identified using a custom KQL detection query within Microsoft Sentinel.## Detection Query
-
-```kql
-SecurityEvent
-| where EventID == 4688
-| where CommandLine has_any (
-    "-enc",
-    "-EncodedCommand",
-    "Invoke-Expression",
-    "IEX",
-    "DownloadString",
-    "FromBase64String"
-)
-| project TimeGenerated, Account, Computer, NewProcessName, CommandLine
-```
-
-## Detection Results
-
-The suspicious PowerShell activity was successfully detected in Microsoft Sentinel using a custom KQL query focused on encoded and obfuscated PowerShell execution.
-
-### Detection Logic
-
-The query searched for:
+The detection query searched Windows Security Event logs for:
+- PowerShell process creation events
 - Encoded PowerShell commands
 - Obfuscation indicators
-- Suspicious PowerShell execution patterns
+- Suspicious execution patterns associated with attacker tradecraft
 
-### KQL Detection Query
+The query focused on Event ID `4688`, which logs process creation activity.
+
+---
+
+## KQL Detection Query
 
 ```kql
 SecurityEvent
@@ -81,32 +75,47 @@ SecurityEvent
 | order by TimeGenerated desc
 ```
 
-### Detection Findings
+---
 
-The query successfully identified:
+## Detection Results
+
+The custom KQL query successfully identified suspicious PowerShell activity generated during the attack simulation.
+
+Microsoft Sentinel captured:
 - Encoded PowerShell execution
-- The originating host
-- User account involved
-- Full PowerShell command line activity
-- Process creation telemetry
+- Suspicious command-line arguments
+- PowerShell process creation telemetry
+- User and host context related to the execution
 
-### MITRE ATT&CK Mapping
+This demonstrates how Sentinel can be used to detect potentially malicious PowerShell behavior commonly leveraged during cyber attacks and post-exploitation activity.
 
-| Technique | Description |
-|---|---|
-| T1059.001 | PowerShell |
-| T1027 | Obfuscated Files or Information |
-| T1140 | Deobfuscate/Decode Files or Information |
+---
 
-### Outcome
+## Screenshots
 
-This lab demonstrated how Microsoft Sentinel can detect suspicious PowerShell activity using Windows Event Logs, Sysmon telemetry, and KQL-based threat hunting queries.
+### Microsoft Sentinel Detection Query
 
+![Detection Query](Powershell%20Obfuscation.png)
+### Detection Results in Microsoft Sentinel
+![Detection Results](PowerShell%20Screenshot.png)
+---
+
+## Key Takeaways
+
+- PowerShell obfuscation is a common attacker technique used to evade detection
+- Sysmon provides enhanced visibility into PowerShell activity
+- Microsoft Sentinel can detect suspicious execution patterns through KQL queries
+- Event ID 4688 is valuable for identifying malicious process creation activity
+- KQL enables defenders to rapidly hunt for suspicious behavior across log sources
+
+---
 
 ## Skills Demonstrated
+
 - Threat Detection
-- KQL Querying
 - Log Analysis
-- Sysmon Configuration
+- KQL Query Development
 - Microsoft Sentinel Investigation
+- Sysmon Configuration
 - PowerShell Monitoring
+- Security Operations (SOC) Analysis
