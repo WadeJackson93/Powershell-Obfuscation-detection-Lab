@@ -1,7 +1,7 @@
 # PowerShell Obfuscation Detection Lab
 
 ## Objective
-This lab demonstrates how to detect suspicious encoded PowerShell execution using Microsoft Sentinel, Sysmon, and KQL queries.
+This lab demonstrates how to detect suspicious PowerShell obfuscation and encoded command execution using Microsoft Sentinel, Sysmon, Windows Event Logs, and KQL queries. The goal was to simulate attacker behavior, generate telemetry, and investigate the activity through log analysis and threat detection techniques.
 
 ## Tools Used
 - Microsoft Sentinel
