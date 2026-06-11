@@ -105,22 +105,29 @@ This screenshot shows Microsoft Sentinel detecting the encoded PowerShell activi
 
 ![Detection Results](./sentinel-results.png)
 
-## Key Takeaways
 
-- PowerShell obfuscation is a common attacker technique used to evade detection
-- Sysmon provides enhanced visibility into PowerShell activity
-- Microsoft Sentinel can detect suspicious execution patterns through KQL queries
-- Event ID 4688 is valuable for identifying malicious process creation activity
-- KQL enables defenders to rapidly hunt for suspicious behavior across log sources
+## MITRE ATT&CK Mapping
 
----
+Technique: T1059.001 - PowerShell
+
+Description:
+Adversaries may abuse PowerShell to execute commands, download payloads, and evade detection through encoded or obfuscated command execution.
 
 ## Skills Demonstrated
 
-- Threat Detection
-- Log Analysis
+- Microsoft Sentinel
 - KQL Query Development
-- Microsoft Sentinel Investigation
+- Threat Detection
+- PowerShell Analysis
+- Log Analysis
+- Windows Event Monitoring
 - Sysmon Configuration
-- PowerShell Monitoring
-- Security Operations (SOC) Analysis
+- Security Operations (SOC)
+
+## Key Takeaways
+
+- PowerShell obfuscation is a common attacker technique.
+- Microsoft Sentinel can detect suspicious PowerShell activity using KQL queries.
+- Sysmon provides enhanced visibility into process creation events.
+- Event ID 4688 is valuable for detecting suspicious process execution.
+- Proper log collection and analysis are essential for threat detection.
