@@ -93,12 +93,17 @@ This demonstrates how Sentinel can be used to detect potentially malicious Power
 
 ## Screenshots
 
-### Microsoft Sentinel Detection Query
+### Attack Simulation
 
-[
-](https://github.com/WadeJackson93/Powershell-Obfuscation-detection-Lab/blob/main/Powershell%20Obfusucation.png)### Detection Results in Microsoft Sentinel
-![Detection Results](./PowerShell%20Screenshot.png)
----
+This screenshot shows encoded PowerShell activity being executed in the Windows VM to generate suspicious telemetry.
+
+![Attack Simulation](./attack-simulation.png)
+
+### Detection Results
+
+This screenshot shows Microsoft Sentinel detecting the encoded PowerShell activity using the custom KQL query.
+
+![Detection Results](./sentinel-results.png)
 
 ## Key Takeaways
 
