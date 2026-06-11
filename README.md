@@ -105,9 +105,12 @@ This screenshot shows Microsoft Sentinel detecting the encoded PowerShell activi
 
 ![Detection Results](./sentinel-results.png)
 
+
 ## MITRE ATT&CK Mapping
+
 Technique: T1059.001 - PowerShell
 Description:
+
 Adversaries may abuse PowerShell to execute commands, download payloads, and evade detection through encoded or obfuscated command execution.
 
 ## Skills Demonstrated
